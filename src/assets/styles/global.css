@@ -1,0 +1,30 @@
+*{
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    box-sizing: border-box;
+}
+html, body, #root{
+    min-height: 100%;
+}
+body{
+    -webkit-font-smoothing: antialiased !important;
+}
+::-webkit-scrollbar {
+    width:6px;
+}
+::-webkit-scrollbar-thumb{
+    background:#131313;
+    border-radius: 8px;
+}
+
+body, input, button {
+    font-size: 14px;
+    font-family: 'Arial', sans-serif;
+}
+a{
+    text-decoration: none;
+}
+button{
+    cursor: pointer;
+}
