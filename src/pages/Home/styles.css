@@ -72,6 +72,10 @@ main form .fields .field input, select{
     width: 100%;
 }
 
+main form .fields .field input#price{
+    cursor: not-allowed;
+}
+
 main form button{
     margin-top: 20px;
     padding: 8px 30px;
