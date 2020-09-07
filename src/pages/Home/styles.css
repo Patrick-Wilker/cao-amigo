@@ -1,0 +1,248 @@
+.apresentation{
+    padding-top: 38px;
+    display: flex;
+    align-items: center;
+    background: #131313;
+}
+
+.apresentation .text{
+    width: 70%;
+}
+
+.apresentation .text h1{
+    color: white;
+    font-size: 40px;
+    width: 500px;
+    margin: 0 0 0 50px;
+}
+
+.apresentation .text p{
+    margin: 50px 0 0 50px;
+    color: #d6d6d6;
+    font-size: 16px;
+}
+
+.apresentation figure{
+    width: 30%;
+    text-align: center;
+}
+
+.apresentation img{
+    width: 400px;
+    padding: 30px;
+}
+
+main{
+    width: 70%;
+    margin: 50px auto;
+}
+
+main form h2{
+    color: #1C1C1C;
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+main form h2 span{
+    border-bottom: 4px solid #552820 ;
+}
+
+main form hr{
+    margin-bottom: 20px;
+}
+
+main form .fields{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+}
+
+main form .fields .field label{
+    margin-right: 5px;
+    color: #1C1C1C;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+main form .fields .field input, select{
+    padding: 6px 10px;
+    color: #1C1C1C;
+    border: 0;
+    border-radius: 4px;
+    width: 100%;
+}
+
+main form button{
+    margin-top: 20px;
+    padding: 8px 30px;
+    border: 0;
+    border-radius: 4px;
+    background: #552820;
+    color: white;
+    font-weight: bold;
+    transition: 1s;
+}
+
+main form button:hover{
+    transform: scale(1.05);
+}
+
+main .results hr{
+    margin: 20px 0;
+}
+
+main .results h3{
+    margin-bottom: 20px;
+    color: #1C1C1C;
+    font-size: 20px;
+}
+
+main .results ul{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    list-style: none;
+}
+
+main .results ul li{
+    display: flex;
+    background: white;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+main .results ul li figure img{
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 4px;
+    margin-right: 15px;
+}
+
+main .results ul li section{
+    display: block;
+    width: 100%;
+}
+
+main .results ul li .data p{
+    color: #1C1C1C;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+main .results ul li button{
+    overflow: hidden;
+    margin-top: auto;
+    border: 0;
+    border-radius: 4px;
+    background: #552820;
+    color: white;
+    display: flex;
+    align-items: center;
+    transition: 0.2s;
+}
+main .results ul li button:hover{
+    background: #421f19;
+}
+
+main .results ul li button div{
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    background: rgba(0,0,0,0.1);
+}
+
+main .results ul li button span{
+    flex: 1;
+    text-align: center;
+    font-weight: bold;
+    margin: 0 10px;
+}
+
+@media (max-width: 1200px){
+    .apresentation{
+        display: grid;
+        grid-template-columns: 1fr ;
+    }
+
+    .apresentation .text{
+        width: 100%;
+        text-align: center;
+    }
+    .apresentation .text h1{
+        width: 100%;
+        margin: 50px 0 0;
+    }
+
+    .apresentation figure{
+        width: 100%;
+        text-align: center;
+    }
+
+    main form .fields{
+        grid-template-columns: 1fr 1fr;
+    }
+
+    main .results ul{
+        grid-template-columns: 1fr;
+    }
+    
+}
+
+@media (max-width: 880px){
+    .apresentation .text{
+        width: 100%;
+        text-align: center;
+    }
+
+    .apresentation .text h1{
+        width: 90%;
+        margin: 30px auto;
+    }
+    
+    .apresentation .text p{
+        width: 90%;
+        margin: 0 auto 30px;
+    }
+
+    .apresentation figure img{
+        width: 300px;
+    }
+
+    main{
+        width: 80%;
+    }
+
+    main form .fields{
+        grid-template-columns: 1fr; 
+    }
+
+}
+
+@media (max-width: 550px){
+    main{
+        width: 90%;
+        margin: 20px auto;
+    }
+
+    main .results ul li{
+        display: block;
+    }
+
+    main .results ul li figure{
+        text-align: center;
+        margin: 0;
+    }
+
+    main .results ul li figure img{
+        margin: 0 0 10px;
+    }
+
+}
+
+@media (max-width: 300px){
+    .apresentation figure img{
+        width: 250px;
+    }
+}

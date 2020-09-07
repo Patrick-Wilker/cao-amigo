@@ -19,3 +19,15 @@ header a{
     color: #D6D6D6;
     font-size: 18px;
 }
+
+@media(max-width: 880px){
+    header .content{
+        width: 80%;
+    }
+}
+
+@media(max-width: 550px){
+    header .content{
+        width: 90%;
+    }
+}
