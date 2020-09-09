@@ -1,0 +1,155 @@
+.cart-status{
+    width: 70%;
+    margin: 0 auto;
+    padding: 38px 0 0;
+    text-align: center;
+}
+
+.cart-status h1{
+    margin: 60px 0 20px;
+    font-size: 38px;;
+    color: #1C1C1C;
+}
+.cart-status p{
+    font-size: 18px;
+    color: #1C1C1C;
+}
+
+button.buy{
+    margin: 20px 0;
+    padding: 10px 60px;
+    border: 0;
+    border-radius: 4px;
+    background: #0071E3;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+
+.cart{
+    width: 70%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+ul.dogs{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    list-style: none;
+}
+
+ul.dogs li{
+    display: flex;
+    background: white;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+ul.dogs li figure img{
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 4px;
+    margin-right: 15px;
+}
+
+ul.dogs li section{
+    display: block;
+    width: 100%;
+}
+
+ul.dogs li .data {
+    text-align: left;
+}
+
+ul.dogs li .data p{
+    color: #1C1C1C;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+ul.dogs li button{
+    overflow: hidden;
+    margin-top: auto;
+    border: 0;
+    border-radius: 4px;
+    background: #c7260a;
+    color: white;
+    display: flex;
+    align-items: center;
+    transition: 0.2s;
+}
+ul.dogs li button:hover{
+    background: #a11f07;
+}
+
+ul.dogs li button div{
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    background: rgba(0,0,0,0.1);
+}
+
+ul.dogs li button span{
+    flex: 1;
+    text-align: center;
+    font-weight: bold;
+    margin: 0 10px;
+}
+
+hr{
+    margin: 30px 0;
+}
+
+.total-again{
+    width: 70%;
+    margin-left: auto;
+    text-align: right;
+}
+
+.total-again p{
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 16px;
+    color: #1C1C1C;
+}
+
+.total-again hr{
+    margin: 30px 0;
+}
+
+
+@media(max-width: 1100px){
+    ul.dogs{
+        grid-template-columns: 1fr;
+    }
+}
+
+@media(max-width: 880px){
+    .cart-status,.cart{
+        width: 80%;
+    }
+}
+
+@media(max-width: 550px){
+    .cart-status,.cart{
+        width: 90%;
+    }
+    .cart ul.dogs li{
+        display: block;
+    }
+
+    .cart ul.dogs li figure{
+        text-align: center;
+        margin: 0;
+    }
+
+    .cart ul.dogs li figure img{
+        margin: 0 0 10px;
+    }
+}
