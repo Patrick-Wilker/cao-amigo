@@ -91,6 +91,22 @@ main form button:hover{
     transform: scale(1.05);
 }
 
+main .d-none{
+    display: none;
+}
+
+@keyframes rotate{
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}
+main .loading svg{
+    animation: rotate 2s linear infinite;
+}
+
 main .results hr{
     margin: 20px 0;
 }
@@ -186,8 +202,12 @@ main .results ul li button span{
 
     main form .fields{
         grid-template-columns: 1fr 1fr;
-    }
 
+    }
+    main .loading{
+        text-align: center;
+    }
+    
     main .results ul{
         grid-template-columns: 1fr;
     }

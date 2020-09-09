@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Header from '../../components/Header';
 
 import ModernWoman from '../../assets/images/modern_woman.svg';
-import {FaPlus} from 'react-icons/fa';
+import {FaPlus, FaSpinner} from 'react-icons/fa';
 
 import api from '../../services/api';
 
@@ -17,6 +17,7 @@ export default function Home(){
     const [breeds, setBreeds] = useState([]);
     const [subBreeds, setSubBreeds] = useState([]);
     const [images, setImages] = useState([]);
+    const [loading, setLoading] = useState(false);
     const [buyDog, setBuyDog] = useState([
         {image: '', name: '', color: '', gender: '', age: 1, price: 30}
     ])
@@ -111,6 +112,10 @@ export default function Home(){
 
     async function handleImages(){
 
+        document.getElementById('results')?.classList.remove('d-none')   
+
+        setLoading(true)
+
         if(subBreeds.length > 1){
             const response = await api.get(`breed/${search.breed}/${search.subBreed}/images`);
 
@@ -120,6 +125,8 @@ export default function Home(){
 
             setImages(response.data.message);
         }
+
+        setLoading(false)
     }
 
     async function handleSearch(e: FormEvent){
@@ -277,40 +284,43 @@ export default function Home(){
                     </button>
                 </form>
 
-                <div className="results">
+                <div id="results" className="results d-none">
                     <hr/>
                     <h3>Resultados:</h3>
-
                     <ul>
-                        {images.length > 0 ? images.map((image, i)=>{
-                            return (
-                                <li key={i}>
-                                    <figure>
-                                        <img 
-                                            src={image}
-                                            alt="Dog"
-                                        />
-                                    </figure>
-                                    <section>
-                                        <div className="data">
-                                            <p><strong>Nome:</strong> {search.name}</p>
-                                            <p><strong>Cor:</strong> {search.color}</p>
-                                            <p><strong>Sexo:</strong> {search.gender}</p>
-                                            <p><strong>Idade:</strong> {search.age}</p>
-                                            <p><strong>Preço:</strong> {search.price}</p>
-                                        </div>
-                
-                                        <button 
-                                            onClick={()=>handleAddCart(image,search.name, search.color,search.gender,search.age,search.price)}
-                                        >
-                                            <div><FaPlus size={16} color="#FFF"/></div>
-                                            <span>ADQUIRIR</span>
-                                        </button>
-                                    </section>
-                                    
-                                </li>
-                            )    
-                        }) : <h4>Nenhum cão encontrado</h4>}
+                        {loading ? <div className="loading"><FaSpinner color="#552820" size={50}/></div> : 
+                            <>
+                                {images.length > 0 ? images.map((image, i)=>{
+                                    return (
+                                        <li key={i}>
+                                            <figure>
+                                                <img 
+                                                    src={image}
+                                                    alt="Dog"
+                                                />
+                                            </figure>
+                                            <section>
+                                                <div className="data">
+                                                    <p><strong>Nome:</strong> {search.name}</p>
+                                                    <p><strong>Cor:</strong> {search.color}</p>
+                                                    <p><strong>Sexo:</strong> {search.gender}</p>
+                                                    <p><strong>Idade:</strong> {search.age}</p>
+                                                    <p><strong>Preço:</strong> {search.price}</p>
+                                                </div>
+                        
+                                                <button 
+                                                    onClick={()=>handleAddCart(image,search.name, search.color,search.gender,search.age,search.price)}
+                                                >
+                                                    <div><FaPlus size={16} color="#FFF"/></div>
+                                                    <span>ADQUIRIR</span>
+                                                </button>
+                                            </section>
+                                            
+                                        </li>
+                                    )    
+                                }) : <h4>Nenhum cão encontrado</h4>}
+                            </>
+                        }
                         
                     </ul>
                 </div>
