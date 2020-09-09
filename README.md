@@ -10,6 +10,8 @@ O projeto se trata da compra de um novo cão. Podendo escolher as característic
 
 Foi utilizado a [Dog API](https://dog.ceo/dog-api/) para obter imagens de cães.
 
+Você pode acessar o projeto [aqui](https://5f5941f9133d6700e6374583--caoamigo.netlify.app/).
+
 <h2>Como rodar o projeto</h2>
 
 <h3>Instalação</h3>
