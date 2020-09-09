@@ -17,6 +17,9 @@ export default function Home(){
     const [breeds, setBreeds] = useState([]);
     const [subBreeds, setSubBreeds] = useState([]);
     const [images, setImages] = useState([]);
+    const [buyDog, setBuyDog] = useState([
+        {image: '', name: '', color: '', gender: '', age: 1, price: 30}
+    ])
     const [search, setSearch] = useState(
         {breed: 'affenpinscher', subBreed: '', name: '', color: 'Branco', gender: 'Macho', age: 1, price: 30},
     )
@@ -27,15 +30,24 @@ export default function Home(){
 
             setBreeds(response.data.message);
 
+            /**Carregando os dados dos inputs caso tenha tido um refresh */
             const savedSearch = localStorage.getItem('search')
             if(savedSearch){
                 setSearch(JSON.parse(savedSearch))
             }
 
+            /**Carregando as sub-racas para o select */
             const savedSubBreeds = localStorage.getItem('subBreeds')
             if(savedSubBreeds){
                 setSubBreeds(JSON.parse(savedSubBreeds))
             }
+
+            /**Carregando os cachorros já adquiridos */
+            let acquiredDog = localStorage.getItem('buyDog');
+            if(acquiredDog){
+                setBuyDog(JSON.parse(acquiredDog))
+            }
+
         }
         loadDatas();
 
@@ -66,6 +78,7 @@ export default function Home(){
         }
 
         newPrice()
+        // eslint-disable-next-line
     }, [search.gender, search.color])
 
     function handleUpdate(field: string, value: string | number){
@@ -80,7 +93,7 @@ export default function Home(){
 
         setSearch(updateSearch);
 
-        localStorage.setItem('search', JSON.stringify(search));
+        localStorage.setItem('search', JSON.stringify(updateSearch));
 
     }
 
@@ -148,6 +161,31 @@ export default function Home(){
 
     }
 
+    function handleAddCart(image: string, name: string, color: string, gender: string, age: number, price: number){
+        
+        let acquiredDog = localStorage.getItem('buyDog');
+
+        if(acquiredDog){
+            const newDog = [
+                ...buyDog, {image: image, name: name, color: color, gender: gender, age: age, price: price}
+            ];
+
+            setBuyDog(newDog);
+
+            localStorage.setItem('buyDog', JSON.stringify(newDog));
+        }else{
+            const newDog = [
+                {image: image, name: name, color: color, gender: gender, age: age, price: price}
+            ];
+
+            setBuyDog(newDog);
+
+            localStorage.setItem('buyDog', JSON.stringify(newDog));
+        }
+        toast.success('Novo amigo adicionado ao carrinho de compras');
+        
+    }
+
     return (
         <>
             <Header/>
@@ -174,6 +212,7 @@ export default function Home(){
                                 name="breed" 
                                 id="breed" 
                                 value={search.breed}
+                                required
                                 onClick = {handleSubBreeds} 
                                 onChange= {e => handleUpdate('breed', e.target.value)}
                             >
@@ -196,20 +235,21 @@ export default function Home(){
                                 name="name" 
                                 id="name" 
                                 type="text" 
+                                minLength={3} maxLength={5} required
                                 value={search.name}
                                 onChange= {e => handleUpdate('name', e.target.value)}
                             />
                         </div>
                         <div className="field">
                             <label htmlFor="gender">Sexo:</label>
-                            <select name="gender" id="gender" value={search.gender} onChange= {e => handleUpdate('gender', e.target.value)}>
+                            <select name="gender" id="gender" required value={search.gender} onChange= {e => handleUpdate('gender', e.target.value)}>
                                 <option value="Macho">Macho</option>
                                 <option value="Fêmea">Fêmea</option>
                             </select>
                         </div>
                         <div className="field">
                             <label htmlFor="color">Cor:</label>
-                            <select name="color" id="color" value={search.color} onChange= {e => handleUpdate('color', e.target.value)}>
+                            <select name="color" id="color" required value={search.color} onChange= {e => handleUpdate('color', e.target.value)}>
                                 <option value="Branco">Branco</option>
                                 <option value="Preto">Preto</option>
                                 <option value="Marrom">Marrom</option>
@@ -222,6 +262,7 @@ export default function Home(){
                                 id="age" 
                                 type="number"
                                 value={search.age}
+                                min={1} max={15} required
                                 onChange= {e => handleUpdate('age', e.target.value)}
                             />
                         </div>
@@ -259,7 +300,9 @@ export default function Home(){
                                             <p><strong>Preço:</strong> {search.price}</p>
                                         </div>
                 
-                                        <button>
+                                        <button 
+                                            onClick={()=>handleAddCart(image,search.name, search.color,search.gender,search.age,search.price)}
+                                        >
                                             <div><FaPlus size={16} color="#FFF"/></div>
                                             <span>ADQUIRIR</span>
                                         </button>
