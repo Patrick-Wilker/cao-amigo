@@ -1,10 +1,11 @@
 import React, {useState, useEffect} from 'react';
+import { toast } from 'react-toastify';
+import {formatPrice} from '../../util/format';
 
 import Header from '../../components/Header';
 
 import {FaTrashAlt} from 'react-icons/fa';
 import './styles.css';
-import { toast } from 'react-toastify';
 
 export default function Cart(){
 
@@ -74,7 +75,7 @@ export default function Cart(){
 
                 {buyDog.length > 0 ? 
                     <>
-                        <h1>O total de seu carrinho é de {total}</h1>
+                        <h1>O total de seu carrinho é de {formatPrice(total)}</h1>
                         <p>Frete grátis em todos os pedidos</p>
                         <button className="buy" onClick={checkout}>Pagar</button>
                     </>
@@ -102,7 +103,7 @@ export default function Cart(){
                                         <p><strong>Cor:</strong> {dog.color}</p>
                                         <p><strong>Sexo:</strong> {dog.gender}</p>
                                         <p><strong>Idade:</strong> {dog.age}</p>
-                                        <p><strong>Preço:</strong> {dog.price}</p>
+                                        <p><strong>Preço:</strong> {formatPrice(dog.price)}</p>
                                     </div>
 
                                     <button onClick={()=>removeDog(i)}>
@@ -120,10 +121,10 @@ export default function Cart(){
                     <>
                     <hr/>
                     <div className="total-again">
-                        <p>Subtotal:<strong>{total}</strong></p>
+                        <p>Subtotal:<strong>{formatPrice(total)}</strong></p>
                         <p>Envio: <strong>Grátis</strong></p>
                         <hr/>
-                        <p><strong>Total:</strong><strong>{total}</strong></p>
+                        <p><strong>Total:</strong><strong>{formatPrice(total)}</strong></p>
                         <button className="buy" onClick={checkout}>Pagar</button>
                     </div>
                     </> 

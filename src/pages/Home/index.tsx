@@ -2,6 +2,7 @@ import React, {useState ,useEffect, FormEvent} from 'react';
 import * as Yup from 'yup';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {formatPrice} from '../../util/format';
 
 import Header from '../../components/Header';
 
@@ -305,7 +306,7 @@ export default function Home(){
                                                     <p><strong>Cor:</strong> {search.color}</p>
                                                     <p><strong>Sexo:</strong> {search.gender}</p>
                                                     <p><strong>Idade:</strong> {search.age}</p>
-                                                    <p><strong>Preço:</strong> {search.price}</p>
+                                                    <p><strong>Preço:</strong> {formatPrice(search.price)}</p>
                                                 </div>
                         
                                                 <button 
